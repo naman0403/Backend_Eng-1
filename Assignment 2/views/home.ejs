@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Home</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>My Blog</h1>
+        <nav>
+            <a href="/posts">Home</a>
+            <a href="/add-post">Add Post</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="post-list">
+            <h2>Recent Posts</h2>
+            <% if (posts.length === 0) { %>
+                <p>No posts yet.  Why not add one?</p>
+            <% } else { %>
+                <ul>
+                    <% posts.forEach(post => { %>
+                        <li>
+                            <h3><a href="/post?id=<%= post.id %>"><%= post.title %></a></h3>
+                            <p class="post-excerpt"><%= post.content.slice(0, 200) + '...' %></p>  <a href="/post?id=<%= post.id %>" class="read-more">Read More</a>
+                        </li>
+                    <% }); %>
+                </ul>
+            <% } %>
+        </section>
+    </main>
+
+    <footer>
+      <p>&copy; <%= new Date().getFullYear() %> My Blog</p>
+    </footer>
+
+</body>
+</html>
